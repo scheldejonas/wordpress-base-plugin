@@ -3,11 +3,11 @@
 /**
  * @wordpress-plugin
  * Plugin Name:       Name - Extension
- * Plugin URI:        
+ * Plugin URI:        https://github.com/scheldejonas/wordpress-base-plugin
  * Description:       Modifying the initial plugin, for this site
  * Version:           1.0.0
- * Author:            a-round ApS
- * Author URI:        https://www.a-round.dk/
+ * Author:            Jonas Schelde
+ * Author URI:        https://www.jonasschelde.dk/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
