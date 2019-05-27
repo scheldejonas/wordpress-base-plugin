@@ -20,7 +20,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 
 // Load - tooling and testing
-require_once $name_extension_settings->plugin_dir_path . 'trait-schelde-common.php';
+require_once plugin_dir_path( __FILE__ ) . 'trait-schelde-common.php';
 
 
 /**
@@ -29,7 +29,7 @@ require_once $name_extension_settings->plugin_dir_path . 'trait-schelde-common.p
  * Note: Start at version 1.0.0 and use SemVer - https://semver.org
  * 
  */
-class NameExtensionSettings {
+class Plugin_Name_Extension_Settings {
 	
 	use ScheldeCommon4;
 	
@@ -107,24 +107,24 @@ class NameExtensionSettings {
 	
 }
 
-$name_extension_settings = new NameExtensionSettings();
+$plugin_name_settings = new Plugin_Name_Extension_Settings();
 
 
 // Change - things on activation
-register_activation_hook( __FILE__, [$name_extension_settings, 'activate'] );
+register_activation_hook( __FILE__, [$plugin_name_settings, 'activate'] );
 
 
 // Change - things on deactivation
-register_deactivation_hook( __FILE__, [$name_extension_settings, 'deactivate'] );
+register_deactivation_hook( __FILE__, [$plugin_name_settings, 'deactivate'] );
 
 
 // Change - things on uninstallation
-register_uninstall_hook( __FILE__, [$name_extension_settings, 'uninstall'] );
+register_uninstall_hook( __FILE__, [$plugin_name_settings, 'uninstall'] );
 
 
 // Load - plugin main class
-require_once $name_extension_settings->plugin_dir_path . 'class-controller.php';
+require_once $plugin_name_settings->plugin_dir_path . 'class-controller.php';
 
 
 // Run - plugin
-NameExtensionController::get_instance( $name_extension_settings );
+Plugin_Name_Controller::get_instance( $plugin_name_settings );

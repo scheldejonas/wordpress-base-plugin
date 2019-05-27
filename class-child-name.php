@@ -6,11 +6,11 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * NameExtensionController class.
- */
-class Plugin_Name_Controller {
-	
-	
+* Visual Composer Date Form Button element
+*/
+class Plugin_Name_Child_Name {
+
+
 	use ScheldeCommon4;
 	
 	
@@ -34,11 +34,11 @@ class Plugin_Name_Controller {
 	 * @param mixed $extending_instance (default: null)
 	 * @return void
 	 */
-	static function get_instance($settings_instance = null) {
+	static function get_instance( $controller_instance = null) {
 		
 		if (self::$instance == null) {
 			
-            self::$instance = new self($settings_instance);
+            self::$instance = new self( $controller_instance );
             
         }
         
@@ -54,36 +54,39 @@ class Plugin_Name_Controller {
 	 * @param mixed $extending_instance
 	 * @return void
 	 */
-	function __construct($settings_instance) {
+	function __construct($controller_instance) {
 		
-		if ( $settings_instance !== null ) {
-			
-			$this->settings = $settings_instance;
-			
-			$settings_instance->Plugin_Name_Controller = $this;
-			
-		}																									$this->t(__FILE__,__LINE__,true);
 		
+		// Set - parent classes
+		if ( $controller_instance !== null ) {
+			
+			$this->controller = $controller_instance;
+			
+			$this->settings = $controller_instance->settings;
+			
+			$controller_instance->Plugin_Name_Child_Name = $this;
+			
+		}																													$this->t(__FILE__,__LINE__,$this);
+		
+		
+		// Run - class
 		$this->run_filters();
 		
 		$this->run_actions();
 		
 		$this->run_shortcodes();
 		
+		
 	}
 	
 	
 	/**
-	 * run function.
+	 * run_filters function.
 	 * 
 	 * @access public
 	 * @return void
 	 */
-	 function run_filters() {
-		
-	
-	 	//
-		
+	function run_filters() {
 		
 	}
 	
@@ -95,40 +98,18 @@ class Plugin_Name_Controller {
 	 * @return void
 	 */
 	function run_actions() {
-	
-	
-		//
-		
 		
 	}
 	
 	
 	/**
-	 * run_shortcodes function.
+	 * run_shortcode function.
 	 * 
 	 * @access public
 	 * @return void
 	 */
-	function run_shortcodes() {				
+	function run_shortcodes() {
 		
-	
-		//
-		
-		
-	}
-	
-	
-	/**
-	 * require_child_classes function.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	function require_child_classes() {
-	
-		require_once $this->settings->plugin_dir_path . 'class-child-name.php';
-		
-		Plugin_Name_Child_Name::get_instance( $this );
 		
 	}
 	
