@@ -8,10 +8,10 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * NameExtensionController class.
  */
-class Plugin_Name_Controller {
+class plugin_name_controller {
 	
 	
-	use ToolsV1;
+	use tools_v1;
 	
 	
 	/**
@@ -60,7 +60,7 @@ class Plugin_Name_Controller {
 			
 			$this->settings = $settings_instance;
 			
-			$settings_instance->Plugin_Name_Controller = $this;
+			$settings_instance->plugin_name_controller = $this;
 			
 		}																									$this->t(__FILE__,__LINE__,true);
 		

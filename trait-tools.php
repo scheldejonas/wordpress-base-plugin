@@ -12,11 +12,11 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 
-if ( ! trait_exists('ToolsV1') ) :
+if ( ! trait_exists('tools_v1') ) :
 /**
  * ScheldeCommon trait.
  */
-trait ToolsV1
+trait tools_v1
 {
 
 

@@ -29,9 +29,9 @@ require_once plugin_dir_path( __FILE__ ) . 'trait-tools.php';
  * Note: Start at version 1.0.0 and use SemVer - https://semver.org
  * 
  */
-class Plugin_Name_Extension_Settings {
+class plugin_name_extension_settings {
 	
-	use ToolsV1;
+	use tools_v1;
 	
 	public $version = '1.0.0';
 	
@@ -136,7 +136,7 @@ class Plugin_Name_Extension_Settings {
 	
 }
 
-$plugin_name_settings = new Plugin_Name_Extension_Settings();
+$plugin_name_settings = new plugin_name_extension_settings();
 
 
 // Change - things on activation
@@ -166,8 +166,8 @@ if (
 	false 
 ) {
 	
-	require_once $this->settings->plugin_dir_path . 'class-child-name.php';
+	require_once $this->settings->plugin_dir_path . 'class-child_name.php';
 		
-	Plugin_Name_Child_Name::get_instance( $plugin_name_controller );
+	plugin_name_child_name::get_instance( $plugin_name_controller );
 	
 }

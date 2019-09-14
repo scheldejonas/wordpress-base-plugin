@@ -11,7 +11,7 @@ if ( ! defined( 'WPINC' ) ) {
 class Plugin_Name_Child_Name {
 
 
-	use ToolsV1;
+	use tools_v1;
 	
 	
 	/**
