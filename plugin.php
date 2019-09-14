@@ -2,7 +2,7 @@
 	
 /**
  * @wordpress-plugin
- * Plugin Name:       Name - Extension
+ * Plugin Name:       plugin_name
  * Plugin URI:        https://github.com/scheldejonas/wordpress-base-plugin
  * Description:       Modifying the initial plugin, for this site
  * Version:           1.0.0
