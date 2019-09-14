@@ -60,7 +60,7 @@ class plugin_name_settings {
 		
 		$this->plugin_dir_path = plugin_dir_path( __FILE__ );
 		
-		$this->plugin_dir_url = plugin_dir_url( __FILE__ );
+		$this->plugin_dir_url = substr( plugin_dir_url( __FILE__ ), 0, -1);
 		
 		$this->settings = $this;				$this->t(__FILE__,__LINE__,true);
 		

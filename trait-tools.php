@@ -62,7 +62,7 @@ trait tools_v1
                 
             }
 
-            $start_line = $date->format("[Y-m-d H:i:s.u]") . ' test ' . $line . ' ';
+            $start_line = $date->format("[Y-m-d H:i:s.u]") . ' test ' . $line;
 
             $value = PHP_EOL . $start_line . ' ' . self::ste( $value );
             
@@ -119,7 +119,7 @@ trait tools_v1
                 
             }
 
-            $start_line = $date->format("[Y-m-d H:i:s.u]") . ' test ' . $line . ' ';
+            $start_line = $date->format("[Y-m-d H:i:s.u]") . ' test ' . $line;
 
             $value = PHP_EOL . $start_line . ' ' . $this->te( $value );
             
