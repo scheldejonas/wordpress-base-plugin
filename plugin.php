@@ -4,7 +4,7 @@
  * @wordpress-plugin
  * Plugin Name:       plugin_name
  * Plugin URI:        https://github.com/scheldejonas/wordpress-base-plugin
- * Description:       Modifying the initial plugin, for this site
+ * Description:       A description for a truly clean and genuine plugin
  * Version:           1.0.0
  * Author:            Jonas Schelde
  * Author URI:        https://www.jonasschelde.dk/
