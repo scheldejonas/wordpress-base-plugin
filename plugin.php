@@ -115,7 +115,7 @@ class Plugin_Name_Extension_Settings {
 	function register_crons() {
 		
 		$events = [
-			'plugin_name_hourly_event' => 'hourly'
+// 			'plugin_name_hourly_event' => 'hourly'
 		];
 		
 		
