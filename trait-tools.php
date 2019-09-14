@@ -12,131 +12,70 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 
-if ( ! trait_exists('ScheldeCommon4') ) :
+if ( ! trait_exists('ToolsV1') ) :
 /**
  * ScheldeCommon trait.
  */
-trait ScheldeCommon4
+trait ToolsV1
 {
 
 
 	/**
-	 * exists function.
+	 * t function.
 	 * 
 	 * @access public
+	 * @param mixed $file
+	 * @param mixed $line
 	 * @param mixed $value
+	 * @param mixed $force (default: null)
 	 * @return void
 	 */
-	function exists($value) {
+	static function st($file, $line, $value, $force = null) {
 
-		// Check for set
-		if ( ! isset($value) ) {
-			return false;
+		if (
+			$force === true
+			|| ( 
+				$force !== false
+				&& ! $this->settings->test_stop
+				&& ( 
+					$_SERVER['REMOTE_ADDR'] === $this->settings->test_ip 
+					|| $this->settings->test_force 
+				) 
+			) 
+		) {
+
+            $debug_file_path = dirname($file) . '/' . basename($file, '.php') . '.txt';
+
+            $time = microtime(true);
+
+            $micro = sprintf("%06d",($time - floor($time)) * 1000000);
+
+            try {
+	            
+                $date = new DateTime(
+                	date('Y-m-d H:i:s.' . $micro, $time)
+                );
+                
+            } catch (\Exception $e) {
+	            
+                $date = now();
+                
+            }
+
+            $start_line = $date->format("[Y-m-d H:i:s.u]") . ' test ' . $line . ' ';
+
+            $value = PHP_EOL . $start_line . ' ' . self::ste( $value );
+            
+            file_put_contents(
+                $debug_file_path,
+                $value,
+                LOCK_EX | FILE_APPEND
+            );
+		
 		}
 
-		// Check for empty
-		if ( empty($value) ) {
-			return false;
-		}
-
-		// Check for empty string
-		if ( $value === '' ) {
-			return false;
-		}
-
-		// Check for false
-		if ( $value === false ) {
-			return false;
-		}
-
-		// Check for null
-		if ( $value === null ) {
-			return false;
-		}
-
-		// Check for no date time
-		if ( $value === '0000-00-00 00:00:00') {
-			return false;
-		}
-
-		// Check for no date
-		if ( $value === '0000-00-00') {
-			return false;
-		}
-
-        // Check for empty array
-        if ( $value === (new \stdClass())) {
-            return false;
-        }
-
-		return true;
 	}
 	
-	
-	/**
-	 * is_array_value function.
-	 * 
-	 * @access public
-	 * @param mixed $key
-	 * @param mixed $array
-	 * @return void
-	 */
-	function is_array_value($key, $array) {
-		
-		if ( array_key_exists($key, $array) ) {
-			
-			if ( $array[$key] ) {
-				
-				return true;
-				
-			}
-			
-		}
-		
-		return false;
-	}
-
-
-
-	/**
-	 * exists_static function.
-	 * 
-	 * @access public
-	 * @static
-	 * @param mixed $value
-	 * @return void
-	 */
-	static function exists_static($value) {
-
-		// Check for set
-		if ( ! isset($value) ) {
-			return false;
-		}
-
-		// Check for empty
-		if ( empty($value) ) {
-			return false;
-		}
-
-		// Check for empty string
-		if ( $value === '' ) {
-			return false;
-		}
-
-		// Check for false
-		if ( $value === false ) {
-			return false;
-		}
-
-		// Check for null
-		if ( $value === null ) {
-			return false;
-		}
-
-		return true;
-	}
-
-
 
 	/**
 	 * t function.
@@ -170,7 +109,9 @@ trait ScheldeCommon4
 
             try {
 	            
-                $date = new DateTime(date('Y-m-d H:i:s.' . $micro, $time));
+                $date = new DateTime(
+                	date('Y-m-d H:i:s.' . $micro, $time)
+                );
                 
             } catch (\Exception $e) {
 	            
@@ -180,11 +121,11 @@ trait ScheldeCommon4
 
             $start_line = $date->format("[Y-m-d H:i:s.u]") . ' test ' . $line . ' ';
 
-            $value = $start_line . ' ' . $this->te( $value );
+            $value = PHP_EOL . $start_line . ' ' . $this->te( $value );
             
             file_put_contents(
                 $debug_file_path,
-                $value . PHP_EOL,
+                $value,
                 LOCK_EX | FILE_APPEND
             );
 		
@@ -192,6 +133,185 @@ trait ScheldeCommon4
 
 	}
 	
+	
+	/**
+	 * te function.
+	 * 
+	 * @access public
+	 * @param mixed $value
+	 * @return void
+	 */
+	static function ste( $value ) {
+
+		$type = gettype( $value );
+		
+		$class = get_class( $value );
+
+        if (
+        	$type === 'object'
+        	&& $value instanceof DOMNode
+        ) {
+            
+			$value = $type . ' ' . $class . ' ' . self::s_show_DOM_node( $value );
+
+        } 
+        else if ( 
+            $type === 'object'
+        	&& method_exists( $value,'attributesToArray') 
+        ) {
+
+            $value = $type . ' ' . $class . ' ' . print_r( $value::attributesToArray(), true);
+
+        }
+        else if (
+        	$type === 'object'
+        	&& method_exists( $value,'getMessage') 
+        ) {
+
+            $value = $type . ' ' . $class . ' ' . print_r( $value::getMessage(), true);
+
+        } 
+        else if (
+        	$type === 'array'
+        ) {
+
+            $value = print_r($value, true);
+
+        } 
+        else if (
+        	$value === null
+        ) {
+
+            $value = $type . ' null';
+
+        } 
+        else if (
+        	$value === true
+        ) {
+
+            $value = $type . ' true';
+
+        } 
+        else if (
+        	$value === false
+        ) {
+
+            $value = $type . ' false';
+
+        }
+        else {
+
+            $value = $type . ' ' . print_r($value, true);
+
+        }
+        
+        return $value;
+
+	}
+	
+
+	/**
+	 * te function.
+	 * 
+	 * @access public
+	 * @param mixed $value
+	 * @return void
+	 */
+	function te( $value ) {
+
+		$type = gettype( $value );
+		
+		$class = get_class( $value );
+
+        if (
+        	$type === 'object'
+        	&& $value instanceof DOMNode
+        ) {
+            
+			$value = $type . ' ' . $class . ' ' . $this->show_DOM_node( $value );
+
+        } 
+        else if ( 
+            $type === 'object'
+        	&& method_exists( $value,'attributesToArray') 
+        ) {
+
+            $value = $type . ' ' . $class . ' ' . print_r( $value->attributesToArray(), true);
+
+        }
+        else if (
+        	$type === 'object'
+        	&& method_exists( $value,'getMessage') 
+        ) {
+
+            $value = $type . ' ' . $class . ' ' . print_r( $value->getMessage(), true);
+
+        } 
+        else if (
+        	$type === 'array'
+        ) {
+
+            $value = print_r($value, true);
+
+        } 
+        else if (
+        	$value === null
+        ) {
+
+            $value = $type . ' null';
+
+        } 
+        else if (
+        	$value === true
+        ) {
+
+            $value = $type . ' true';
+
+        } 
+        else if (
+        	$value === false
+        ) {
+
+            $value = $type . ' false';
+
+        }
+        else {
+
+            $value = $type . ' ' . print_r($value, true);
+
+        }
+        
+        return $value;
+
+	}
+
+
+	/**
+	 * show_DOM_node function.
+	 * 
+	 * @access public
+	 * @param DOMNode $domNode
+	 * @param mixed $print
+	 * @return void
+	 */
+	static function s_show_DOM_node(DOMNode $domNode, $print) {
+		
+		$print .= $domNode->nodeName.':'.$domNode->nodeValue;
+		
+	    foreach ($domNode->childNodes as $node) {																				
+		    
+	        if ( $node->hasChildNodes() ) {
+		        
+	            self::show_DOM_node($node, $print);
+	            
+	        }
+	        
+	    }   
+	    
+	    return $print;
+	     
+	}
+		
 	
 	/**
 	 * show_DOM_node function.
@@ -218,82 +338,6 @@ trait ScheldeCommon4
 	    return $print;
 	     
 	}
-	
-
-	/**
-	 * te function.
-	 * 
-	 * @access public
-	 * @param mixed $value
-	 * @return void
-	 */
-	function te( $value ) {
-
-		$type = gettype( $value );
-		
-		$type .= ' ';
-
-        if (
-        	$type === 'object'
-        	&& $value instanceof DOMNode
-        ) {
-            
-			$value = $type . $this->show_DOM_node( $value );
-
-        } 
-        else if ( 
-            $type === 'object'
-        	&& method_exists( $value,'attributesToArray') 
-        ) {
-
-            $value = $type . print_r( $value->attributesToArray(), true);
-
-        }
-        else if (
-        	$type === 'object'
-        	&& method_exists( $value,'getMessage') 
-        ) {
-
-            $value = $type . print_r( $value->getMessage(), true);
-
-        } 
-        else if (
-        	$type === 'array'
-        ) {
-
-            $value = $type . print_r($value, true);
-
-        } 
-        else if (
-        	$value === null
-        ) {
-
-            $value = $type . 'null';
-
-        } 
-        else if (
-        	$value === true
-        ) {
-
-            $value = $type . 'true';
-
-        } 
-        else if (
-        	$value === false
-        ) {
-
-            $value = $type . 'false';
-
-        }
-        else {
-
-            $value = $type . print_r($value, true);
-
-        }
-        
-        return $value;
-
-	}
 
 
     /**
@@ -302,7 +346,7 @@ trait ScheldeCommon4
      * @access public
      * @return void
      */
-    public function get_secure_string() {
+    function get_secure_string() {
 
 		return $this->random_string_generator(50);
 

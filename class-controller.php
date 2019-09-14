@@ -11,7 +11,7 @@ if ( ! defined( 'WPINC' ) ) {
 class Plugin_Name_Controller {
 	
 	
-	use ScheldeCommon4;
+	use ToolsV1;
 	
 	
 	/**
@@ -114,21 +114,6 @@ class Plugin_Name_Controller {
 	
 		//
 		
-		
-	}
-	
-	
-	/**
-	 * require_child_classes function.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	function require_child_classes() {
-	
-		require_once $this->settings->plugin_dir_path . 'class-child-name.php';
-		
-		Plugin_Name_Child_Name::get_instance( $this );
 		
 	}
 	

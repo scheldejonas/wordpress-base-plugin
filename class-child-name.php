@@ -11,7 +11,7 @@ if ( ! defined( 'WPINC' ) ) {
 class Plugin_Name_Child_Name {
 
 
-	use ScheldeCommon4;
+	use ToolsV1;
 	
 	
 	/**
@@ -54,7 +54,7 @@ class Plugin_Name_Child_Name {
 	 * @param mixed $extending_instance
 	 * @return void
 	 */
-	function __construct($controller_instance) {
+	function __construct( $controller_instance ) {
 		
 		
 		// Set - parent classes
