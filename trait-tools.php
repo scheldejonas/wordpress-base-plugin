@@ -144,13 +144,13 @@ trait ToolsV1
 	static function ste( $value ) {
 
 		$type = gettype( $value );
-		
-		$class = get_class( $value );
 
         if (
         	$type === 'object'
         	&& $value instanceof DOMNode
         ) {
+	        
+			$class = get_class( $value );
             
 			$value = $type . ' ' . $class . ' ' . self::s_show_DOM_node( $value );
 
@@ -159,6 +159,8 @@ trait ToolsV1
             $type === 'object'
         	&& method_exists( $value,'attributesToArray') 
         ) {
+	        
+			$class = get_class( $value );
 
             $value = $type . ' ' . $class . ' ' . print_r( $value::attributesToArray(), true);
 
@@ -167,6 +169,8 @@ trait ToolsV1
         	$type === 'object'
         	&& method_exists( $value,'getMessage') 
         ) {
+	        
+			$class = get_class( $value );
 
             $value = $type . ' ' . $class . ' ' . print_r( $value::getMessage(), true);
 
@@ -220,13 +224,13 @@ trait ToolsV1
 	function te( $value ) {
 
 		$type = gettype( $value );
-		
-		$class = get_class( $value );
 
         if (
         	$type === 'object'
         	&& $value instanceof DOMNode
         ) {
+	        
+			$class = get_class( $value );
             
 			$value = $type . ' ' . $class . ' ' . $this->show_DOM_node( $value );
 
@@ -235,6 +239,8 @@ trait ToolsV1
             $type === 'object'
         	&& method_exists( $value,'attributesToArray') 
         ) {
+	        
+			$class = get_class( $value );
 
             $value = $type . ' ' . $class . ' ' . print_r( $value->attributesToArray(), true);
 
@@ -243,6 +249,8 @@ trait ToolsV1
         	$type === 'object'
         	&& method_exists( $value,'getMessage') 
         ) {
+	        
+			$class = get_class( $value );
 
             $value = $type . ' ' . $class . ' ' . print_r( $value->getMessage(), true);
 
