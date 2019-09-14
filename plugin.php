@@ -35,7 +35,7 @@ class plugin_name_settings {
 	
 	public $version = '1.0.0';
 	
-	public $slug = 'name-extension';
+	public $slug = 'plugin_name';
 	
 	public $test_stop = false;
 	
