@@ -8,7 +8,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
 * Visual Composer Date Form Button element
 */
-class Plugin_Name_Child_Name {
+class plugin_name_child_name {
 
 
 	use tools_v1;
@@ -64,7 +64,7 @@ class Plugin_Name_Child_Name {
 			
 			$this->settings = $controller_instance->settings;
 			
-			$controller_instance->Plugin_Name_Child_Name = $this;
+			$controller_instance->plugin_name_child_name = $this;
 			
 		}																													$this->t(__FILE__,__LINE__,$this);
 		
