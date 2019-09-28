@@ -58,7 +58,7 @@ class plugin_name_settings {
 	 */
 	function __construct() {					
 		
-		$this->plugin_dir_path = plugin_dir_path( __FILE__ );
+		$this->plugin_dir_path = substr( plugin_dir_path( __FILE__ ), 0, -1);
 		
 		$this->plugin_dir_url = substr( plugin_dir_url( __FILE__ ), 0, -1);
 		
@@ -156,7 +156,9 @@ add_action( 'init', [$plugin_name_settings, 'register_crons'] );
 
 
 // Load - plugin main class
-require_once $plugin_name_settings->plugin_dir_path . 'class-controller.php';
+require_once $plugin_name_settings->plugin_dir_path . '/functions.php';
+
+require_once $plugin_name_settings->plugin_dir_path . '/class-controller.php';
 
 
 // Run - plugin with controller and others
@@ -166,7 +168,7 @@ if (
 	false 
 ) {
 	
-	require_once $this->settings->plugin_dir_path . 'class-child_name.php';
+	require_once $this->settings->plugin_dir_path . '/class-child_name.php';
 		
 	plugin_name_child_name::get_instance( $plugin_name_controller );
 	
