@@ -1,5 +1,5 @@
 <?php
-	
+
 /**
  * @wordpress-plugin
  * Plugin Name:       plugin_name
@@ -11,8 +11,12 @@
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
- 
- 
+
+
+// Debugger
+if ( class_exists('D') ) { $d = new D(); } else { class D { function __construct() {} function t($file,$line,$value,$show=false) {} } } if ( ! function_exists('t_functions') ) { function t_functions( $line, $value, $show ) {} } if ( ! class_exists('Debugger') ) { class Debugger { function __construct() {} function t($file,$line,$value,$show=false) {} } } if ( ! trait_exists('Debugging') ) { trait Debugging { function t($file,$line,$value,$show=false) {} } }
+
+
  // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -29,15 +33,9 @@ class plugin_name_settings {
 	
 	use Debugging;
 	
-	public $version = '1.0.0';
+	public $version = '0.1.0';
 	
 	public $slug = 'plugin_name';
-	
-	public $test_stop = false;
-	
-	public $test_force = false;
-	
-	public $test_ip = '188.180.97.126';
 	
 	public $plugin_dir_path = '';
 	
