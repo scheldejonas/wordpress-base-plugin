@@ -1,19 +1,19 @@
 <?php
-	
- // If this file is called directly, abort.
+
+
+// If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
 
 /**
  * NameExtensionController class.
  */
 class plugin_name_controller {
 	
-	
-	use tools_v1;
-	
-	
+	use Debugging;
+
 	/**
 	 * instance
 	 * 
@@ -62,7 +62,7 @@ class plugin_name_controller {
 			
 			$settings_instance->plugin_name_controller = $this;
 			
-		}																									$this->t(__FILE__,__LINE__,true);
+		}																				$this->t(__FILE__,__LINE__,true);
 		
 		$this->run_filters();
 		

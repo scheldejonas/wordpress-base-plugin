@@ -19,10 +19,6 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 
-// Load - tooling and testing
-require_once plugin_dir_path( __FILE__ ) . 'trait-tools.php';
-
-
 /**
  * Load all the constants for the plugin
  *
@@ -31,7 +27,7 @@ require_once plugin_dir_path( __FILE__ ) . 'trait-tools.php';
  */
 class plugin_name_settings {
 	
-	use tools_v1;
+	use Debugging;
 	
 	public $version = '1.0.0';
 	
@@ -156,20 +152,11 @@ add_action( 'init', [$plugin_name_settings, 'register_crons'] );
 
 
 // Load - plugin main class
-require_once $plugin_name_settings->plugin_dir_path . '/functions.php';
+require_once $plugin_name_settings->plugin_dir_path . '/includes/functions.php';
 
-require_once $plugin_name_settings->plugin_dir_path . '/class-controller.php';
+require_once $plugin_name_settings->plugin_dir_path . '/includes/class-controller.php';
 
 
 // Run - plugin with controller and others
 $plugin_name_controller = plugin_name_controller::get_instance( $plugin_name_settings );
 
-if ( 
-	false 
-) {
-	
-	require_once $this->settings->plugin_dir_path . '/class-child_name.php';
-		
-	plugin_name_child_name::get_instance( $plugin_name_controller );
-	
-}
