@@ -65,59 +65,25 @@ class plugin_name_controller {
 			$settings_instance->plugin_name_controller = $this;
 			
 		}																				$this->t(__FILE__,__LINE__,true);
-		
-		$this->run_filters();
-		
-		$this->run_actions();
-		
-		$this->run_shortcodes();
-		
-	}
-	
-	
-	/**
-	 * run function.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	 function run_filters() {
-		
-	
-	 	//
-		
-		
-	}
-	
-	
-	/**
-	 * run_actions function.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	function run_actions() {
-	
-	
-		//
-		
-		
-	}
-	
-	
-	/**
-	 * run_shortcodes function.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	function run_shortcodes() {				
-		
-	
-		//
-		
-		
-	}
+
+        $this->load_hooks();
+
+    }
+
+
+    /**
+     * run function.
+     *
+     * @access public
+     * @return void
+     */
+    function load_hooks() {
+
+
+        //
+
+
+    }
 	
 
 }
