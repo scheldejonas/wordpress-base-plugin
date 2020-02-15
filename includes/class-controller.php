@@ -79,10 +79,6 @@ class plugin_name_controller {
      */
     function load_hooks() {
 
-
-        //
-
-
     }
 	
 

@@ -50,13 +50,24 @@ class plugin_name_settings {
 	 * @access public
 	 * @return void
 	 */
-	function __construct() {					
-		
-		$this->plugin_dir_path = substr( plugin_dir_path( __FILE__ ), 0, -1);
-		
-		$this->plugin_dir_url = substr( plugin_dir_url( __FILE__ ), 0, -1);
-		
-		$this->settings = $this;				$this->t(__FILE__,__LINE__,true);
+	function __construct() {
+
+        // Create - needed paths
+        $this->plugin_dir_path = substr( plugin_dir_path( __FILE__ ), 0, -1);
+
+        $this->plugin_templates_path = $this->plugin_dir_path . '/templates';
+
+        $this->plugin_includes_path = $this->plugin_dir_path . '/includes';
+
+
+        // Create - needed urls
+        $this->plugin_dir_url = substr( plugin_dir_url( __FILE__ ), 0, -1);
+
+        $this->plugin_asset_js_url = $this->plugin_dir_url . '/js';
+
+        $this->plugin_asset_css_url = $this->plugin_dir_url . '/css';
+
+        $this->settings = $this;				$this->t(__FILE__,__LINE__,true);
 		
 	}
 	
