@@ -33,13 +33,23 @@ class plugin_name_settings {
 	
 	use Debugging;
 	
-	public $version = '0.1.0';
+	public $version = '1.0.0';
 	
 	public $slug = 'plugin_name';
 	
-	public $plugin_dir_path = '';
-	
-	public $plugin_dir_url = '';
+	public $root_path = '';
+
+	public $templates_path = '';
+
+	public $includes_path = '';
+
+    public $storage_path = '';
+
+    public $root_url = '';
+
+	public $asset_js_url = '';
+
+	public $asset_css_url = '';
 	
 	public $asset_version = 1;
 	
@@ -52,21 +62,26 @@ class plugin_name_settings {
 	 */
 	function __construct() {
 
+
         // Create - needed paths
-        $this->plugin_dir_path = substr( plugin_dir_path( __FILE__ ), 0, -1);
+        $this->root_path = substr( plugin_dir_path( __FILE__ ), 0, -1);
 
-        $this->plugin_templates_path = $this->plugin_dir_path . '/templates';
+        $this->templates_path = $this->root_path . '/templates';
 
-        $this->plugin_includes_path = $this->plugin_dir_path . '/includes';
+        $this->includes_path = $this->root_path . '/includes';
+
+        $this->storage_path = $this->root_path . '/storage';
 
 
         // Create - needed urls
-        $this->plugin_dir_url = substr( plugin_dir_url( __FILE__ ), 0, -1);
+        $this->root_url = substr( plugin_dir_url( __FILE__ ), 0, -1);
 
-        $this->plugin_asset_js_url = $this->plugin_dir_url . '/js';
+        $this->asset_js_url = $this->root_url . '/js';
 
-        $this->plugin_asset_css_url = $this->plugin_dir_url . '/css';
+        $this->asset_css_url = $this->root_url . '/css';
 
+
+        // Relate - settings instance
         $this->settings = $this;				$this->t(__FILE__,__LINE__,true);
 		
 	}
@@ -161,9 +176,9 @@ add_action( 'init', [$plugin_name_settings, 'register_crons'] );
 
 
 // Load - plugin main class
-require_once $plugin_name_settings->plugin_dir_path . '/includes/functions.php';
+require_once $plugin_name_controller->includes_path . '/functions.php';
 
-require_once $plugin_name_settings->plugin_dir_path . '/includes/class-controller.php';
+require_once $plugin_name_controller->includes_path . '/class-controller.php';
 
 
 // Run - plugin with controller and others
