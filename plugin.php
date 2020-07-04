@@ -20,4 +20,4 @@ if ( ! defined( 'WPINC' ) ) {
 
 require __DIR__ . '/vendor/autoload.php';
 
-$plugin_name_settings = new plugin_name\plugin_name_settings();
+$plugin_name_settings = new plugin_name\plugin_name_settings(__FILE__);

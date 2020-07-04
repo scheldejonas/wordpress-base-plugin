@@ -26,10 +26,10 @@ class plugin_name_settings {
     public $asset_version = 1;
 
 
-    function __construct() {
+    function __construct($plugin_file) {
 
 
-        $this->root_path = substr( plugin_dir_path( __FILE__ ), 0, -1);
+        $this->root_path = substr( plugin_dir_path( $plugin_file ), 0, -1);
 
         $this->templates_path = $this->root_path . '/templates';
 
@@ -38,18 +38,18 @@ class plugin_name_settings {
         $this->storage_path = $this->root_path . '/storage';
 
 
-        $this->root_url = substr( plugin_dir_url( __FILE__ ), 0, -1);
+        $this->root_url = substr( plugin_dir_url( $plugin_file ), 0, -1);
 
         $this->asset_js_url = $this->root_url . '/js';
 
         $this->asset_css_url = $this->root_url . '/css';
 
 
-        register_activation_hook( __FILE__, [$this, 'activate'] );
+        register_activation_hook( $plugin_file, [$this, 'activate'] );
 
-        register_deactivation_hook( __FILE__, [$this, 'deactivate'] );
+        register_deactivation_hook( $plugin_file, [$this, 'deactivate'] );
 
-        register_uninstall_hook( __FILE__, [$this, 'uninstall'] );
+        register_uninstall_hook( $plugin_file, [$this, 'uninstall'] );
 
         add_action( 'init', [$this, 'register_crons'] );
 
