@@ -1,6 +1,5 @@
 .idea
 node_modules
-vendor/*
-assets/*
+vendor
 package-lock.json
 composer.lock
