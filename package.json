@@ -15,8 +15,7 @@
   },
   "author": "Jonas Schelde",
   "license": "GPL-3.0",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "moment": "^2.24.0",
     "v-calendar": "^1.0.0-beta.23",
