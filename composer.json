@@ -1,6 +1,7 @@
 {
   "require": {
-    "tmarois/filebase": "^1.0"
+    "tmarois/filebase": "^1.0",
+    "rmccue/requests": "^1.7"
   },
   "autoload": {
     "psr-4": {
