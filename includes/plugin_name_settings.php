@@ -1,5 +1,7 @@
 <?php
 
+namespace plugin_name;
+
 class plugin_name_settings {
 
 
@@ -43,7 +45,14 @@ class plugin_name_settings {
         $this->asset_css_url = $this->root_url . '/css';
 
 
-        $this->settings = $this;
+        register_activation_hook( __FILE__, [$this, 'activate'] );
+
+        register_deactivation_hook( __FILE__, [$this, 'deactivate'] );
+
+        register_uninstall_hook( __FILE__, [$this, 'uninstall'] );
+
+        add_action( 'init', [$this, 'register_crons'] );
+
 
     }
 
@@ -68,7 +77,6 @@ class plugin_name_settings {
         $events = [
             // 			'plugin_name_hourly_event' => 'hourly'
         ];
-
 
         foreach ( $events as $event_name => $duration ) {
 

@@ -13,23 +13,11 @@
  */
 
 
- // If this file is called directly, abort.
+// If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-require_once 'vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-$plugin_name_settings = new plugin_name_settings();
-
-
-register_activation_hook( __FILE__, [$plugin_name_settings, 'activate'] );
-
-
-register_deactivation_hook( __FILE__, [$plugin_name_settings, 'deactivate'] );
-
-
-register_uninstall_hook( __FILE__, [$plugin_name_settings, 'uninstall'] );
-
-
-add_action( 'init', [$plugin_name_settings, 'register_crons'] );
+$plugin_name_settings = new plugin_name\plugin_name_settings();

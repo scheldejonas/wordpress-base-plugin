@@ -1,21 +1,13 @@
 <?php
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
+namespace plugin_name;
+
+use stdClass;
 
 class plugin_name_admin_page {
 
 
 	function __construct() {
-
-        $this->load_hooks();
-
-    }
-
-
-    function load_hooks() {
 
         add_action( 'admin_menu', [$this, 'register_admin_page'] );
 
