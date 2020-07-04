@@ -13,7 +13,7 @@ window.moment = require('moment');
 
 
 // Set - axios for requesting the data
-window.axios = require('axios').create({
+window.plugin_name_axios = require('axios').create({
     withCredentials: true,
     baseURL: window.ajaxurl,
     headers : {
@@ -40,7 +40,7 @@ window.Vue = require('vue');
 
 import DatePicker from 'v-calendar/lib/components/date-picker.umd';
 
-Vue.component('date-picker', DatePicker);
+Vue.component( 'date-picker', DatePicker );
 
 // Vue.component('date-list', require('./DateList').default );
 

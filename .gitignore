@@ -1,6 +1,4 @@
-.idea/*
-node_modules/*
-vendor/*
-assets/*
-package-lock.json
-composer.lock
+.idea/
+node_modules/
+vendor/
+assets/

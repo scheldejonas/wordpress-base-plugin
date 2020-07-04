@@ -16,10 +16,10 @@
   "author": "Jonas Schelde",
   "license": "GPL-3.0",
   "dependencies": {
-    "moment": "^2.24.0",
-    "v-calendar": "^1.0.0-beta.23"
   },
   "devDependencies": {
+    "moment": "^2.24.0",
+    "v-calendar": "^1.0.0-beta.23",
     "axios": "^0.19",
     "bootstrap": "^4.1.0",
     "cross-env": "^5.1",
