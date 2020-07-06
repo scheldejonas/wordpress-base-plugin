@@ -31,9 +31,9 @@ require 'plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
     'https://github.com/username/wordpress-plugin-plugin_name/',
     __FILE__,
-    'ritzau'
+    'plugin_name'
 );
 
-$myUpdateChecker->setAuthentication('wordpresspluginplugin_nameaccess_token');
+$myUpdateChecker->setAuthentication('plugin_name_access_token');
 
 $myUpdateChecker->setBranch('master');
